@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, HeaderMain, MainContainer, SearchContainer } from "./styles";
+import { CardContainer, Container, HeaderMain, MainContainer, SearchContainer } from "./styles";
+import Card from "../Card/Card";
 
 const Main = () => {
   return (
@@ -15,6 +16,13 @@ const Main = () => {
         <h2>Resultado de busca</h2>
         <button>Novo Card</button>
       </HeaderMain>
+
+      <CardContainer>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+      </CardContainer>
     </MainContainer>
   );
 };

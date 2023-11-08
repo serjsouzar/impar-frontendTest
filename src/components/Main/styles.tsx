@@ -90,3 +90,11 @@ export const HeaderMain = styled.div`
     bottom: 25px;
   }
 `
+
+export const CardContainer = styled.div`
+  max-width: 980px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+`
