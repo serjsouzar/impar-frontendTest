@@ -8,17 +8,20 @@ type Entry = {
   entry_number: number;
   pokemon_species: {
     name: string;
-    url: string
+    url: string;
   };
 };
 
 type Data = {
   pokemon_entries: Entry[];
+  varieties: [string];
+  pokemon: Object
 };
 
 const App = () => {
 
     const [data, setData] = useState<Data | null>(null);
+    const [pokemon, setPokemon] = useState<Data | null>(null);
   
     useEffect(() => {
       fetch("https://pokeapi.co/api/v2/pokedex/30")
@@ -31,7 +34,11 @@ const App = () => {
       if (data) {
         let pokemonEntries = data.pokemon_entries;
         for(let i = 0; i <= pokemonEntries.length; i++){
-          console.log(pokemonEntries[i].pokemon_species.url)
+          let pkmUrl = pokemonEntries[i]?.pokemon_species?.url
+          fetch(pkmUrl)
+          .then((response) => response.json())
+          .then((data: Data) => console.log(data.varieties[0].pokemon))
+          .catch((error) => console.error(error));
         }
       }
     }, [data]);
