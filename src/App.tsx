@@ -14,36 +14,92 @@ type Entry = {
 
 type Data = {
   pokemon_entries: Entry[];
-  varieties: [string];
-  pokemon: Object
+  varieties: [
+    {
+      value: boolean;
+      pokemon: {
+        name: string;
+        url: string;
+      };
+    }
+  ];
+};
+
+type pokeVarieties = {
+  varieties: [
+    {
+      value: boolean;
+      pokemon: {
+        name: string;
+        url: string;
+      };
+    }
+  ];
+};
+
+type pokemonType = {
+  species: {
+    name: string;
+    url: string;
+  };
 };
 
 const App = () => {
+  const [data, setData] = useState<Data | null>(null);
+  const [pokemon, setPokemon] = useState<any[]>([]);
 
-    const [data, setData] = useState<Data | null>(null);
-    const [pokemon, setPokemon] = useState<Data | null>(null);
-  
-    useEffect(() => {
-      fetch("https://pokeapi.co/api/v2/pokedex/30")
-        .then((response) => response.json())
-        .then((data: Data) => setData(data))
-        .catch((error) => console.error(error));
-    }, []);
-  
-    useEffect(() => {
-      if (data) {
-        let pokemonEntries = data.pokemon_entries;
-        for(let i = 0; i <= pokemonEntries.length; i++){
-          let pkmUrl = pokemonEntries[i]?.pokemon_species?.url
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokedex/30/")
+      .then((response) => response.json())
+      .then((data) => {
+        data.pokemon_entries.map((entry: any) => {
+          const pkmUrl = entry?.pokemon_species?.url;
+
           fetch(pkmUrl)
-          .then((response) => response.json())
-          .then((data: Data) => console.log(data.varieties[0].pokemon))
-          .catch((error) => console.error(error));
-        }
-      }
-    }, [data]);
-  
+            .then((res) => res.json())
+            .then((data) => {
+              data.varieties.map((pkm: any) => {
+                const pkmUrl2 = pkm.pokemon.url;
+                
+                fetch(pkmUrl2)
+                  .then((res) => res.json())
+                  .then((data) => {
+                    
+                  });
+              });
+            });
+        });
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
+  console.log(pokemon)
+
+  /* useEffect(() => {
+    if (data) {
+      let pokemonEntries = data.pokemon_entries;
+      pokemonEntries.map(async (entry) => {
+        let pkmUrl = entry?.pokemon_species?.url;
+        await fetch(pkmUrl)
+          .then((response) => response.json())
+          .then((data: Data) => {
+            data.varieties.map(async (i) => {
+              const pkmUrl2 = data?.varieties[0]?.pokemon.url;
+              await fetch(pkmUrl2)
+                .then((response) => response.json())
+                .then(async (data:pokemonType) => {
+                  setPokemon(
+                    (prevPokemon) => [...prevPokemon, data]);
+                  
+                });
+            });
+          })
+          .catch((error) => console.error(error));
+      });
+    }
+  }, [data]);
+ */
+  //
   return (
     <>
       <Header />
