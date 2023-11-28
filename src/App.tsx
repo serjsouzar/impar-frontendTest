@@ -6,29 +6,26 @@ import Main from "./components/Main/Main";
 import { pokeProps } from "./types/types";
 
 const App = () => {
-
   const [pokeDetail, setPokeDetail] = useState<pokeProps[]>([]);
 
-  useEffect(() => {
+  let promisePokemon: object[];
+
+  function fetchPokemonData() {
     fetch("https://pokeapi.co/api/v2/pokemon-species?limit=493")
       .then((response) => response.json())
       .then((data) => {
         const slicedArr = data.results.slice(386);
-        const promisePokemon = slicedArr.map((i: any) =>
+        promisePokemon = slicedArr.map((i: any) =>
           fetch(i?.url).then((res) => res.json())
         );
         Promise.all(promisePokemon)
           .then((results: any) => {
-            results.map((i: any) => {
-              fetch(i.varieties[0]?.pokemon?.url)
+            results.map(async (i: any) => {
+              await fetch(i.varieties[0]?.pokemon?.url)
                 .then((response) => response.json())
                 .then((response) => {
-                  const verifingExistingPokemon = (existingObject:any) => existingObject.id === response.id
-                  if (pokeDetail.length >= 1 && !pokeDetail.some(verifingExistingPokemon) === true) {
-                    return
-                  }
-                  setPokeDetail((prev) => [...prev, response])
-              });
+                  setPokeDetail((prev) => [...prev, response]);
+                });
             });
           })
           .catch((err) => {
@@ -36,11 +33,13 @@ const App = () => {
           });
       })
       .catch((error) => console.error(error));
+  }
+
+  useEffect(() => {
+    fetchPokemonData();
   }, []);
 
-  
-console.log(pokeDetail)
-  
+  console.log(pokeDetail);
 
   return (
     <>

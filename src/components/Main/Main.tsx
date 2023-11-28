@@ -20,8 +20,8 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
       </HeaderMain>
 
       <CardContainer>
-        {pokemon.map((pkm,index) => (
-          <Card name={pkm.name} key={index} sprites={pkm.sprites}/>
+        {pokemon.map((pkm) => (
+          <Card name={pkm.name} key={pkm.id} sprites={pkm.sprites} types={pkm.types}/>
         ))}
       </CardContainer>
     </MainContainer>
