@@ -4,11 +4,11 @@ export const GlobalStyle = createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
   }
 
-  body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #f6f4f6
+  body{    
+    background-color: #f6f4f6   
 ;
   }
 ` 

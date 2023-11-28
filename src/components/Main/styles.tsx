@@ -17,7 +17,7 @@ export const Container = styled.div`
 
   @media (max-width: 1130px) {
     bottom: 145px;
-    width: 685px;
+    width: 399px;
   }
 
   @media (max-width: 588px) {
@@ -56,6 +56,8 @@ export const SearchContainer = styled.div`
   @media (max-width: 588px) {
     padding: 4px;
     width: 270px;
+    height: 44px;
+    width: 332px;
   }
 `;
 
@@ -86,10 +88,27 @@ export const HeaderMain = styled.div`
   }
 
   @media (max-width: 1130px) {
-    width: 685px;
+    width: 340px;
     bottom: 25px;
+    justify-content: space-between;
   }
-`
+
+  @media (max-width: 588px) {
+    h2 {
+      font-size: 18px;
+      left: 2px;
+    }
+
+    button {
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 113px;
+      left: 2px;
+    }
+  }
+`;
 
 export const CardContainer = styled.div`
   max-width: 980px;
@@ -97,4 +116,4 @@ export const CardContainer = styled.div`
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-`
+`;
