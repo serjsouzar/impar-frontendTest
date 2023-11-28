@@ -3,9 +3,7 @@ import { CardContainer, Container, HeaderMain, MainContainer, SearchContainer } 
 import Card from "../Card/Card";
 import { pokeProps } from "../../types/types";
 
-const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
-  
-  //console.log(pokemon)
+const Main = ({pokemon}: {pokemon: pokeProps[]}) => {  
 
   return (
     <MainContainer>
@@ -23,7 +21,7 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
 
       <CardContainer>
         {pokemon.map((pkm,index) => (
-          <Card name={pkm.name} key={index} sprite={pkm.sprite}/>
+          <Card name={pkm.name} key={index} sprites={pkm.sprites}/>
         ))}
       </CardContainer>
     </MainContainer>

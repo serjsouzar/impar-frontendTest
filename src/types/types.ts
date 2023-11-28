@@ -1,14 +1,14 @@
 export interface pokeProps {
   name: string;
-  sprite: {
-    front_default:string
+  sprites: {
+    front_default:string,
+    other: {
+      dream_world: {
+        front_default: string
+      }
+    }
   };
   id?: number;
 }
 
-export interface pokeSprite {
-  front_default: string;
-  extraImage: {
-    home: string;
-  };
-}
+
