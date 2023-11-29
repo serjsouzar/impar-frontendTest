@@ -17,13 +17,14 @@ export const Container = styled.div`
 
   @media (max-width: 1130px) {
     bottom: 145px;
-    width: 399px;
+    width: 599px;
   }
 
-  @media (max-width: 588px) {
+  @media (max-width: 768px) {
     display: flex;
     justify-content: center;
     bottom: 85px;
+    width: 399px;
   }
 `;
 
@@ -53,7 +54,7 @@ export const SearchContainer = styled.div`
     cursor: pointer;
   }
 
-  @media (max-width: 588px) {
+  @media (max-width: 768px) {
     padding: 4px;
     width: 270px;
     height: 44px;
@@ -85,6 +86,7 @@ export const HeaderMain = styled.div`
     border-radius: 8px;
     position: relative;
     left: 17px;
+    cursor: pointer;
   }
 
   @media (max-width: 1130px) {

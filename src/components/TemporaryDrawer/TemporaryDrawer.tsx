@@ -1,49 +1,43 @@
 import * as React from "react";
 
 import Drawer from "@mui/material/Drawer";
-
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import { Button, ButtonContainer, Input, InputContainer, TitleContainer } from "./styles";
 
 interface TemporaryDrawerProps {
   open: boolean;
   onClose: () => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TemporaryDrawer = ({open, onClose}: TemporaryDrawerProps) => {
+export const TemporaryDrawer = ({ open, onClose, handleChange }: TemporaryDrawerProps) => {
+
   const list = () => (
     <>
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <TitleContainer>
+        <img src={require("./../../assets/create.png")} alt="create" />
+        <h3>Criar card</h3>
+      </TitleContainer>
+
+      <Divider variant="middle" />
+
+      <InputContainer>
+        <div>
+          <h5>DIGITE UM NOME PARA O CARD</h5>
+          <Input type="text" placeholder="Digite o nome..." />
+        </div>
+
+        <div>
+          <h5>INCLUA UMA IMAGEM PARA APARECER NO CARD</h5>
+          <Input type="file" onChange={handleChange} placeholder="Nenhum arquivo selecionado..."/>
+        </div>
+      </InputContainer>
+
+      <Divider variant="middle" />
+
+      <ButtonContainer>
+        <Button>Criar Card</Button>
+      </ButtonContainer>
     </>
   );
 
@@ -55,9 +49,9 @@ export const TemporaryDrawer = ({open, onClose}: TemporaryDrawerProps) => {
           open={open}
           onClose={onClose}
           PaperProps={{
-            sx:{
-              width: "30%"
-            }
+            sx: {
+              width: 550,
+            },
           }}
         >
           {list()}

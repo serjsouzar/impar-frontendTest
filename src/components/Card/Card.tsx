@@ -9,18 +9,19 @@ import {
 } from "./styles";
 import { pokeProps } from "../../types/types";
 
-const Card = ({ name, sprites }: pokeProps) => {
+const Card = ({ name, sprites, fileState }: pokeProps) => {
   const capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <Container>
       <ImageContainer>
         <img
-          src={sprites?.other?.dream_world?.front_default}
+          src={sprites?.other?.dream_world?.front_default || fileState?.file}
           width={80}
           height={80}
           alt={name}
         />
+
       </ImageContainer>
       <Line />
       <h4>{capitalName}</h4>

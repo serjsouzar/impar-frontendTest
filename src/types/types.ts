@@ -1,6 +1,7 @@
 export interface pokeProps {
   name: string;
-  sprites: {
+  fileState?: FileState ;
+  sprites?: {
     front_default: string;
     other: {
       dream_world: {
@@ -15,7 +16,7 @@ export interface pokeProps {
       };
     }
   ];
-  types: [
+  types?: [
     {
       slot: number;
       type: {
@@ -27,3 +28,7 @@ export interface pokeProps {
 }
 
 export type Anchor = string;
+
+export interface FileState {
+  file: string | undefined;
+}
