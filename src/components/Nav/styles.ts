@@ -19,6 +19,7 @@ export const Container = styled.nav`
     bottom: 0px;
     height: 186px;
     background-size: 100%;
+    width: 102%;
   }
 
   @media (max-width: 588px) {
