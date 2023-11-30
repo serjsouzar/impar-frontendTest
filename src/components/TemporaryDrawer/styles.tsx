@@ -39,7 +39,7 @@ export const ButtonContainer = styled.div`
   padding-top: 20px;
   position: relative;
   left: 18px;
-`
+`;
 
 export const Button = styled.button`
   background-color: #e76316;
@@ -53,3 +53,41 @@ export const Button = styled.button`
   left: 17px;
   cursor: pointer;
 `;
+
+export const UploadInput = styled.div`
+  width: 100%;
+
+  .input_file {
+    border: 1px solid #ccc;
+    color: transparent;
+    position: relative;
+    text-decoration: none;
+    width: 90%;    
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .input_file::before {
+    content: "Selecione um arquivo";
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 75px;
+    transform: translate(-50%, -50%);
+  }
+
+  input[type="file"]::file-selector-button {
+    position: relative;
+    left: 75%;
+    border: 1px solid #e76316;
+    border-radius: 5px;
+    padding: 10px;
+    color: #e76316;
+    background: #fff;    
+    cursor: pointer;
+  }
+`;
+

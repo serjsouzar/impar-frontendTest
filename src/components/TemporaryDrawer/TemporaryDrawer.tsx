@@ -2,7 +2,14 @@ import * as React from "react";
 
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
-import { Button, ButtonContainer, Input, InputContainer, TitleContainer } from "./styles";
+import {
+  Button,
+  ButtonContainer,
+  Input,
+  InputContainer,
+  TitleContainer,
+  UploadInput,
+} from "./styles";
 
 interface TemporaryDrawerProps {
   open: boolean;
@@ -10,8 +17,11 @@ interface TemporaryDrawerProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TemporaryDrawer = ({ open, onClose, handleChange }: TemporaryDrawerProps) => {
-
+export const TemporaryDrawer = ({
+  open,
+  onClose,
+  handleChange,
+}: TemporaryDrawerProps) => {
   const list = () => (
     <>
       <TitleContainer>
@@ -27,10 +37,12 @@ export const TemporaryDrawer = ({ open, onClose, handleChange }: TemporaryDrawer
           <Input type="text" placeholder="Digite o nome..." />
         </div>
 
-        <div>
-          <h5>INCLUA UMA IMAGEM PARA APARECER NO CARD</h5>
-          <Input type="file" onChange={handleChange} placeholder="Nenhum arquivo selecionado..."/>
-        </div>
+        <h5>INCLUA UMA IMAGEM PARA APARECER NO CARD</h5>
+        <UploadInput>
+          <label className="upload-image">                  
+            <input type="file" className="input_file" onChange={handleChange} />                        
+          </label>
+        </UploadInput>
       </InputContainer>
 
       <Divider variant="middle" />
