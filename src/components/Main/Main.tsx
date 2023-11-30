@@ -16,21 +16,13 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
 
   const [fileState, setFileState] = useState<FileState>({ file: undefined });
   const [component, setComponent] = useState<boolean>(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-    if (e.target.files && e.target.files.length > 0) {
-      const file = URL.createObjectURL(e.target.files[0]);
-      setFileState({ file });
-    }
-    setComponent(true)
-  };
+  const [name, setName] = useState<string>("");
 
 
   return (
     <MainContainer>
       <Container>
-      <TemporaryDrawer open={open} onClose={toggleDrawer(false)} handleChange={handleChange}/>   
+      <TemporaryDrawer open={open} onClose={toggleDrawer(false)} fileState={fileState} setFileState={setFileState} setName={setName} name={name} setComponent={setComponent}/>   
         <SearchContainer>
           <input type="search" placeholder="Digite aqui sua busca..." />
           <img src={require("./../../assets/lupa.png")} alt="lupa" />
@@ -43,7 +35,7 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
       </HeaderMain>
 
       <CardContainer>
-        {component === true ? <Card name="Sergio" fileState={fileState}/> : ""}
+        {component === true ? <Card name={name} fileState={fileState}/> : ""}
         {pokemon.map((pkm) => (
           <Card name={pkm.name} key={pkm.id} sprites={pkm.sprites} types={pkm.types}/>
         ))}

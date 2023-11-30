@@ -59,7 +59,6 @@ export const UploadInput = styled.div`
 
   .input_file {
     border: 1px solid #ccc;
-    color: transparent;
     position: relative;
     text-decoration: none;
     width: 90%;    
@@ -69,7 +68,6 @@ export const UploadInput = styled.div`
   }
 
   .input_file::before {
-    content: "Selecione um arquivo";
     font-size: 12px;
     color: #666;
     text-align: left;
