@@ -17,23 +17,22 @@ interface TemporaryDrawerProps {
   onClose: () => void;
   fileState: FileState,
   setFileState: React.Dispatch<React.SetStateAction<FileState>>,
-  setComponent: React.Dispatch<React.SetStateAction<boolean>>,
   setName: (name:string) => void,
   name: string,
+  handleCreateCard: (e:React.FormEvent) => void
 }
 
 export const TemporaryDrawer = ({
   open,
   onClose,
   setFileState,
-  setComponent,
   setName,
   name,
+  handleCreateCard
 }: TemporaryDrawerProps) => {
 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {    
     if (e.target.files && e.target.files.length > 0) {
       const file = URL.createObjectURL(e.target.files[0]);
       setFileState({ file });
@@ -42,7 +41,7 @@ export const TemporaryDrawer = ({
 
   const list = () => (
 
-    <>
+    <form onSubmit={(e) => handleCreateCard(e)}>
       <TitleContainer>
         <img src={require("./../../assets/create.png")} alt="create" />
         <h3>Criar card</h3>
@@ -67,9 +66,9 @@ export const TemporaryDrawer = ({
       <Divider variant="middle" />
 
       <ButtonContainer>
-        <Button onClick={() => setComponent(true)}>Criar Card</Button>
+        <Button>Criar Card</Button>
       </ButtonContainer>
-    </>
+    </form>
   );
 
   return (

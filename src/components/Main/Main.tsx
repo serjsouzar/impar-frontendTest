@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CardContainer, Container, HeaderMain, MainContainer, SearchContainer } from "./styles";
 import Card from "../Card/Card";
-import { pokeProps, FileState } from "../../types/types";
+import { pokeProps, FileState, CreatedCard } from "../../types/types";
 
 import { TemporaryDrawer } from "../TemporaryDrawer/TemporaryDrawer";
 
@@ -15,14 +15,29 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
   };
 
   const [fileState, setFileState] = useState<FileState>({ file: undefined });
-  const [component, setComponent] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
+  const [createdCard, setCreatedCard] = useState<CreatedCard[]>([])
+
+  function handleCreateCard(e:React.FormEvent) {
+    e.preventDefault();
+    if(name && fileState)
+    setCreatedCard([...createdCard, {name, fileState}])
+    setName("")
+    setOpen(!open)
+  }
 
 
   return (
     <MainContainer>
       <Container>
-      <TemporaryDrawer open={open} onClose={toggleDrawer(false)} fileState={fileState} setFileState={setFileState} setName={setName} name={name} setComponent={setComponent}/>   
+      <TemporaryDrawer 
+        open={open} 
+        onClose={toggleDrawer(false)}
+        fileState={fileState}
+        setFileState={setFileState}
+        setName={setName}
+        name={name}
+        handleCreateCard={handleCreateCard}/>   
         <SearchContainer>
           <input type="search" placeholder="Digite aqui sua busca..." />
           <img src={require("./../../assets/lupa.png")} alt="lupa" />
@@ -35,7 +50,11 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
       </HeaderMain>
 
       <CardContainer>
-        {component === true ? <Card name={name} fileState={fileState}/> : ""}
+        {createdCard ? 
+          createdCard.map((card) => (
+            <Card name={card.name} fileState={card.fileState}/>
+          )) 
+        : ""}
         {pokemon.map((pkm) => (
           <Card name={pkm.name} key={pkm.id} sprites={pkm.sprites} types={pkm.types}/>
         ))}
