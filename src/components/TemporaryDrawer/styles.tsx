@@ -30,6 +30,10 @@ export const Input = styled.input`
   margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+
+  @media (max-width: 588px) {
+    width: 80%;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -39,6 +43,11 @@ export const ButtonContainer = styled.div`
   padding-top: 20px;
   position: relative;
   left: 18px;
+
+  @media (max-width: 588px) {
+    width: 288px;
+  }
+  
 `;
 
 export const Button = styled.button`
@@ -65,16 +74,20 @@ export const UploadInput = styled.div`
     padding: 6px;
     border-radius: 5px;
     cursor: pointer;
+    
+    @media (max-width: 588px) {
+    width: 83%;
+  }
   }
 
-  .input_file::before {
+  .input_file::before {    
     font-size: 12px;
     color: #666;
     text-align: left;
     position: absolute;
     top: 50%;
     left: 75px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);    
   }
 
   input[type="file"]::file-selector-button {
@@ -86,6 +99,9 @@ export const UploadInput = styled.div`
     color: #e76316;
     background: #fff;    
     cursor: pointer;
+
+    @media (max-width: 588px) {
+      left: 57%;
+  }
   }
 `;
-

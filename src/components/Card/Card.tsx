@@ -20,6 +20,7 @@ const Card = ({ name, sprites, fileState }: pokeProps) => {
           width={80}
           height={80}
           alt={name}
+          className="createdCard"
         />
 
       </ImageContainer>

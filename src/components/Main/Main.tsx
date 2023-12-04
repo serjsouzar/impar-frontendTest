@@ -52,7 +52,7 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
       <CardContainer>
         {createdCard ? 
           createdCard.map((card) => (
-            <Card name={card.name} fileState={card.fileState}/>
+            <Card name={card.name} fileState={card.fileState} />
           )) 
         : ""}
         {pokemon.map((pkm) => (

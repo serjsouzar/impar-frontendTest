@@ -39,8 +39,6 @@ const App = () => {
     fetchPokemonData();
   }, []);
 
-  console.log(pokeDetail);
-
   return (
     <>
       <Header />

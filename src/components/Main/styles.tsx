@@ -24,7 +24,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     bottom: 85px;
-    width: 399px;
+    width: 372px;
   }
 `;
 
@@ -118,4 +118,5 @@ export const CardContainer = styled.div`
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  padding-bottom: 30px;
 `;

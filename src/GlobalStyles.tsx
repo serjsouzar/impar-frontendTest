@@ -8,7 +8,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body{    
-    background-color: #f6f4f6   
-;
+    background-color: #f6f4f6;
+    overflow-x: hidden;
+
+    @media (max-width: 588px) {
+      overflow-x: hidden;
+  }
   }
 ` 

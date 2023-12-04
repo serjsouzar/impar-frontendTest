@@ -36,6 +36,10 @@ export const ImageContainer = styled.div`
   position: relative;
   top: 15px;
 
+  .createdCard {
+    border-radius: 50%;
+  }
+
   @media (max-width: 588px) {
     top: 7px;
   }

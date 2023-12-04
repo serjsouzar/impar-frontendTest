@@ -21,5 +21,6 @@ export const Container = styled.header`
 
   @media (max-width: 768px) {
     height: 56px;
+    padding-left: 0px;
   }
 `;
