@@ -25,6 +25,8 @@ export interface pokeProps {
     }
   ];
   id?: number;
+  openModal?: () => void;
+  closeModal?: () => void 
 }
 
 export interface CreatedCard {

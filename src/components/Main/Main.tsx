@@ -4,7 +4,20 @@ import Card from "../Card/Card";
 import { pokeProps, FileState, CreatedCard } from "../../types/types";
 
 import { TemporaryDrawer } from "../TemporaryDrawer/TemporaryDrawer";
+import Modal from 'react-modal';
+import ModalComponent from "../ModalComponent/ModalComponent";
 
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',    
+  },
+};
 
 const Main = ({pokemon}: {pokemon: pokeProps[]}) => {  
 
@@ -17,6 +30,16 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
   const [fileState, setFileState] = useState<FileState>({ file: undefined });
   const [name, setName] = useState<string>("");
   const [createdCard, setCreatedCard] = useState<CreatedCard[]>([])
+  const [modalIsOpen, setIsOpen] = React.useState<boolean>(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
 
   function handleCreateCard(e:React.FormEvent) {
     e.preventDefault();
@@ -52,7 +75,7 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
       <CardContainer>
         {createdCard ? 
           createdCard.map((card) => (
-            <Card name={card.name} fileState={card.fileState} />
+            <Card name={card.name} fileState={card.fileState} openModal={openModal} closeModal={closeModal}/>
           )) 
         : ""}
         {pokemon.map((pkm) => (
@@ -60,6 +83,15 @@ const Main = ({pokemon}: {pokemon: pokeProps[]}) => {
         ))}
       </CardContainer>   
 
+      <Modal
+        isOpen={modalIsOpen}        
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+        ariaHideApp={false}        
+      >                  
+          <ModalComponent closeModal={closeModal}/>
+      </Modal>    
       
     </MainContainer>
   );

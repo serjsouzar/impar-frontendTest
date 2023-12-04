@@ -9,7 +9,7 @@ import {
 } from "./styles";
 import { pokeProps } from "../../types/types";
 
-const Card = ({ name, sprites, fileState }: pokeProps) => {
+const Card = ({ name, sprites, fileState, openModal, closeModal }: pokeProps) => {
   const capitalName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
@@ -29,13 +29,14 @@ const Card = ({ name, sprites, fileState }: pokeProps) => {
       <BtnContainer>
         <DeleteBtn>
           <img src={require("./../../assets/trash1.png")} alt="logo-test" />
-          <p>Excluir</p>
+          <p onClick={openModal}>Excluir</p>
         </DeleteBtn>
         <EditBtn>
           <img src={require("./../../assets/edit1.png")} alt="logo-test" />
           <p>Editar</p>
         </EditBtn>
       </BtnContainer>
+      
     </Container>
   );
 };
