@@ -4,16 +4,20 @@ export const Wrapper = styled.div`
 .exitIcon {
   background-color: transparent;
   border: none;
-  position: relative;
-  left: 90%;
-  bottom: 10%;
+  position: absolute;
+  left: 93%;
+  top: -27px;
+  cursor: pointer;
 }
 `
   
 
 export const Container = styled.div`
   width: 500px;
-  height: 450px;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ModalContent = styled.div`
@@ -51,6 +55,29 @@ export const ModalText = styled.div`
 
 export const ModalButtons = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  padding: 15px;  
+  position: relative;
+  right: 16px;
+
+  button {
+    background-color: #fff;
+    color: red;
+    padding: 10px;
+    width: 150px;
+    border: 3px solid red;
+    font-size: 16px;
+    border-radius: 8px;
+    position: relative;
+    left: 17px;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover{
+      background-color: red;
+      color: #fff
+    }
+  }
 `

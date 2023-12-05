@@ -2,14 +2,17 @@ import React from 'react'
 import { Container, ModalButtons, ModalContent, ModalText, ModalTrash, Wrapper } from './styles'
 import Divider from "@mui/material/Divider";
 import trashIcon from "./../../assets/trash.svg"
-
+import { CreatedCard } from "../../types/types";
 
 interface ModalProps {
-  closeModal: () => void
+  closeModal: () => void;
+  handleDeleteCard: (id: number) => void;
+  newCard: CreatedCard
 }
 
 
-const ModalComponent = ({closeModal}: ModalProps) => {
+const ModalComponent = ({closeModal, handleDeleteCard, newCard}: ModalProps) => {
+
   return (
     <Wrapper>
       <button className="exitIcon" onClick={closeModal}><img src={require("./../../assets/exit.png")} alt="exit" /></button>
@@ -27,7 +30,7 @@ const ModalComponent = ({closeModal}: ModalProps) => {
             <Divider variant="middle" />
 
             <ModalButtons>
-              <button>Excluir</button>
+              <button onClick={() => handleDeleteCard(newCard.id)}>Excluir</button>
               <button onClick={closeModal}>Cancelar</button>
             </ModalButtons>
           </ModalContent>      

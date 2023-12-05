@@ -31,7 +31,14 @@ export interface pokeProps {
 
 export interface CreatedCard {
   name: string;
-  fileState: FileState
+  fileState: FileState;
+  id: number
+}
+
+export interface CardType {
+  name: string;
+  fileState: FileState;
+  id: number
 }
 
 export type Anchor = string;
