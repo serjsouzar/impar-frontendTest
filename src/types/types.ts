@@ -25,9 +25,6 @@ export interface pokeProps {
     }
   ];
   id: number;
-  openModal: () => void;
-  closeModal: () => void; 
-  setClickedID: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface CreatedCard {

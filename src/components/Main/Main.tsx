@@ -7,12 +7,15 @@ import {
   SearchContainer,
 } from "./styles";
 
+import './../../overlayStyle.css'
+
 import { pokeProps, FileState, CreatedCard } from "../../types/types";
 
 import { TemporaryDrawer } from "../TemporaryDrawer/TemporaryDrawer";
 import Modal from "react-modal";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import Card from "../Card/Card";
+import GeneratedCard from "../GeneratedCard/GeneratedCard";
 
 const customStyles = {
   content: {
@@ -38,7 +41,7 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
   const [name, setName] = useState<string>("");
   const [createdCard, setCreatedCard] = useState<CreatedCard[]>([]);
   const [modalIsOpen, setIsOpen] = React.useState<boolean>(false);
-  const [clickedID, setClickedID] = useState<number>(0)
+  const [clickedID, setClickedID] = useState<number>(0);
 
   function openModal() {
     setIsOpen(true);
@@ -55,9 +58,9 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
     setOpen(!open);
   }
 
-  function handleDeleteCard() {    
+  function handleDeleteCard() {
     const filteredCards = createdCard.filter((card) => card?.id !== clickedID);
-    setCreatedCard(filteredCards)
+    setCreatedCard(filteredCards);
     closeModal();
   }
 
@@ -86,16 +89,15 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
 
       <CardContainer>
         {createdCard
-          ? createdCard.map((card) => (            
+          ? createdCard.map((card) => (
               <>
-                <Card
+                <GeneratedCard
                   id={card.id}
                   key={card.id}
                   name={card.name}
                   fileState={card.fileState}
-                  openModal={openModal}
-                  closeModal={closeModal}
-                  setClickedID={setClickedID}                  
+                  openModal={openModal}                  
+                  setClickedID={setClickedID}
                 />
 
                 <Modal
@@ -103,26 +105,25 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
                   onRequestClose={closeModal}
                   style={customStyles}
                   ariaHideApp={false}
+                  overlayClassName="Overlay"
                 >
                   <ModalComponent
                     closeModal={closeModal}
-                    handleDeleteCard={handleDeleteCard}                    
+                    handleDeleteCard={handleDeleteCard}
                   />
                 </Modal>
               </>
             ))
           : ""}
         {pokemon.map((pkm) => (
-          <Card
-            id={pkm.id}
-            setClickedID={setClickedID}
-            name={pkm.name}
-            key={pkm.id}
-            sprites={pkm.sprites}
-            types={pkm.types}
-            openModal={openModal}
-            closeModal={closeModal}
-          />
+          <>
+            <Card
+              id={pkm.id}              
+              name={pkm.name}
+              key={pkm.id}
+              sprites={pkm.sprites}              
+            />        
+          </>
         ))}
       </CardContainer>
     </MainContainer>

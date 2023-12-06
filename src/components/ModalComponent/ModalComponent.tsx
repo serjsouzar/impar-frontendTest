@@ -2,16 +2,13 @@ import React from 'react'
 import { Container, ModalButtons, ModalContent, ModalText, ModalTrash, Wrapper } from './styles'
 import Divider from "@mui/material/Divider";
 import trashIcon from "./../../assets/trash.svg"
-import { CreatedCard } from "../../types/types";
 
 interface ModalProps {
   closeModal: () => void;
   handleDeleteCard: () => void;
 }
 
-
 const ModalComponent = ({closeModal, handleDeleteCard}: ModalProps) => {
-
 
   return (
     <Wrapper>

@@ -97,25 +97,3 @@ export const EditBtn = styled.button`
     filter: grayscale(0);
   }
 `;
-
-export const ModalContainer = styled.button`
-  background-color: #f6f4f6;
-  padding: 25px;
-  border: none;
-  
-
-  .exitIcon {
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  left: 95%;
-  top: -20px;
-  cursor: pointer;  
-
-  img {
-    width: 40px;
-    height: 40px;
-  }
-}
-`
-
