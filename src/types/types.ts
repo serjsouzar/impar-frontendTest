@@ -24,18 +24,13 @@ export interface pokeProps {
       };
     }
   ];
-  id?: number;
-  openModal?: () => void;
-  closeModal?: () => void 
+  id: number;
+  openModal: () => void;
+  closeModal: () => void; 
+  setClickedID: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface CreatedCard {
-  name: string;
-  fileState: FileState;
-  id: number
-}
-
-export interface CardType {
   name: string;
   fileState: FileState;
   id: number

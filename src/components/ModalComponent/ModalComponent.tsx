@@ -6,12 +6,12 @@ import { CreatedCard } from "../../types/types";
 
 interface ModalProps {
   closeModal: () => void;
-  handleDeleteCard: (id: number) => void;
-  newCard: CreatedCard
+  handleDeleteCard: () => void;
 }
 
 
-const ModalComponent = ({closeModal, handleDeleteCard, newCard}: ModalProps) => {
+const ModalComponent = ({closeModal, handleDeleteCard}: ModalProps) => {
+
 
   return (
     <Wrapper>
@@ -30,7 +30,7 @@ const ModalComponent = ({closeModal, handleDeleteCard, newCard}: ModalProps) => 
             <Divider variant="middle" />
 
             <ModalButtons>
-              <button onClick={() => handleDeleteCard(newCard.id)}>Excluir</button>
+              <button onClick={() => handleDeleteCard()}>Excluir</button>
               <button onClick={closeModal}>Cancelar</button>
             </ModalButtons>
           </ModalContent>      

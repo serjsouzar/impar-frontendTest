@@ -7,7 +7,7 @@ import {
   SearchContainer,
 } from "./styles";
 
-import { pokeProps, FileState, CreatedCard, CardType } from "../../types/types";
+import { pokeProps, FileState, CreatedCard } from "../../types/types";
 
 import { TemporaryDrawer } from "../TemporaryDrawer/TemporaryDrawer";
 import Modal from "react-modal";
@@ -37,15 +37,8 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
   const [fileState, setFileState] = useState<FileState>({ file: undefined });
   const [name, setName] = useState<string>("");
   const [createdCard, setCreatedCard] = useState<CreatedCard[]>([]);
-
-  const defaultCard: CardType = {
-    name: "",
-    fileState: fileState,
-    id: 0,
-  };
-
-  const [newCard, setNewCard] = useState<CardType>(defaultCard);
   const [modalIsOpen, setIsOpen] = React.useState<boolean>(false);
+  const [clickedID, setClickedID] = useState<number>(0)
 
   function openModal() {
     setIsOpen(true);
@@ -57,19 +50,16 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
 
   function handleCreateCard(e: React.FormEvent) {
     e.preventDefault();
-    if (name && fileState) setNewCard({ name, fileState, id: Date.now() });
     setCreatedCard([...createdCard, { name, fileState, id: Date.now() }]);
     setName("");
     setOpen(!open);
   }
 
-  function handleDeleteCard(id: number) {
-    const newCreatedCards = createdCard.filter((card) => card.id !== id);
-    setCreatedCard(newCreatedCards)
+  function handleDeleteCard() {    
+    const filteredCards = createdCard.filter((card) => card?.id !== clickedID);
+    setCreatedCard(filteredCards)
     closeModal();
   }
-
-  console.log(createdCard)
 
   return (
     <MainContainer>
@@ -96,13 +86,16 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
 
       <CardContainer>
         {createdCard
-          ? createdCard.map((card) => (
+          ? createdCard.map((card) => (            
               <>
                 <Card
+                  id={card.id}
+                  key={card.id}
                   name={card.name}
                   fileState={card.fileState}
                   openModal={openModal}
                   closeModal={closeModal}
+                  setClickedID={setClickedID}                  
                 />
 
                 <Modal
@@ -113,8 +106,7 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
                 >
                   <ModalComponent
                     closeModal={closeModal}
-                    handleDeleteCard={handleDeleteCard}
-                    newCard={card}
+                    handleDeleteCard={handleDeleteCard}                    
                   />
                 </Modal>
               </>
@@ -122,10 +114,14 @@ const Main = ({ pokemon }: { pokemon: pokeProps[] }) => {
           : ""}
         {pokemon.map((pkm) => (
           <Card
+            id={pkm.id}
+            setClickedID={setClickedID}
             name={pkm.name}
             key={pkm.id}
             sprites={pkm.sprites}
             types={pkm.types}
+            openModal={openModal}
+            closeModal={closeModal}
           />
         ))}
       </CardContainer>
